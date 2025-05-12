@@ -1,12 +1,21 @@
-document.write("<h1>Hello World</h1>");
-let a = 5;
-let b = 10;
-let name = "John Doe";
-document.write(`Hello, ${name}`);
-
-document.write("<br>",a + b);
-
-let names = ["Daksh", "John", "Doe"];
-for(let i = 0; i<names.length;i++){
-    document.write("<br>", names[i]);
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    greet() {
+        // Select an element to display the greeting
+        const output = document.getElementById("output");
+        output.innerHTML = `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+    }
 }
+
+let heading = document.getElementsByClassName("heading");
+
+heading[0].innerHTML = "<h1>Welcome to the JavaScript Class</h1>";
+
+const person1 = new Person("Daksh", 18);
+
+document.getElementById("greet-btn").addEventListener("click", function () {
+    person1.greet();
+});
