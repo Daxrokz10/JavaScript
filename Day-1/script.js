@@ -19,3 +19,10 @@ const person1 = new Person("Daksh", 18);
 document.getElementById("greet-btn").addEventListener("click", function () {
     person1.greet();
 });
+
+let message = prompt("Enter a message:");
+
+document.getElementById("message").innerHTML = message;
+let h1 = document.createElement("h1");
+h1.innerText = message;
+document.body.appendChild(h1);
