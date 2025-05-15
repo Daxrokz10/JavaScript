@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billing Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 40px;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-container">
+            <h3 class="text-center mb-4">Billing Form</h3>
+            <form id="billForm">
+                <div class="mb-3">
+                    <label for="srno" class="form-label">Sr. No.</label>
+                    <input type="number" class="form-control" id="srno" required>
+                </div>
+                <div class="mb-3">
+                    <label for="product" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="product" required>
+                </div>
+                <div class="mb-3">
+                    <label for="qty" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" id="qty" required>
+                </div>
+                <div class="mb-3">
+                    <label for="rate" class="form-label">Rate</label>
+                    <input type="number" class="form-control" id="rate" required>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#billModal"
+                        onclick="generateBill()">Generate Bill</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bill Modal -->
+    <div class="modal fade" id="billModal" tabindex="-1" aria-labelledby="billModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="billModalLabel">Bill Summary</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="billContent">
+                    <div class="container border p-4 my-5 shadow">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4><strong>Daksh's Shop</strong></h4>
+                                <p>www.dakshdukaan.com</p>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <h5><strong>INVOICE/BILL</strong></h5>
+                                <p class="mb-1"><strong>No:</strong> ___________</p>
+                                <p><strong>Date:</strong> ___________</p>
+                            </div>
+                        </div>
+
+                        <table class="table table-bordered text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>SL.No:</th>
+                                    <th>Description</th>
+                                    <th>Qty</th>
+                                    <th>Rate</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody style="height: 300px;">
+                                <!-- Sample Rows -->
+                                <tr style="height: 50px;">
+                                    <td id="sr-disp"></td>
+                                    <td id="pr-disp"></td>
+                                    <td id="qty-disp"></td>
+                                    <td id="rate-disp"></td>
+                                    <td id="total-disp"></td>
+                                </tr>
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+
+                        <div class="row">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                                <table class="table borderless">
+                                    <tr>
+                                        <td class="text-end"><strong>Total:</strong></td>
+                                        <td><u id="total-final-disp"></u></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-end"><strong>Tax........%:</strong></td>
+                                        <td>5%</td>
+                                    </tr>
+                                    
+                                </table>
+                            </div>
+                        </div>
+
+                        <p><strong>Rupees in Word:</strong> __________________________________________________________
+                        </p>
+
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <p><strong>Terms and Conditions</strong></p>
+                            </div>
+                            <div class="col-md-6 text-end">
+                                <p><strong>Signature</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to Populate Modal -->
+    <script src="./script.js"></script>
+
+</body>
+
+</html>

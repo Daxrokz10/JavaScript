@@ -1,0 +1,11 @@
+.table tbody tr {
+  height: 50px;
+}
+
+.table-bordered td, .table-bordered th {
+  vertical-align: middle;
+}
+
+.borderless td {
+  border: none !important;
+}
