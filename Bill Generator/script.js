@@ -25,6 +25,14 @@ document.getElementById('addItemBtn').addEventListener('click', function() {
     document.getElementById("rate").value = '';
 });
 
+document.getElementById('ClearBill').addEventListener('click', function() {
+    billItems = [];
+    const tbody = document.querySelector("#billModal tbody");
+    tbody.innerHTML = '';
+    document.getElementById("total-final-disp").innerText = '0.00';
+    document.getElementById("total-disp") && (document.getElementById("total-disp").innerText = '0.00');
+}); 
+
 function generateBill() {
     const tbody = document.querySelector("#billModal tbody");
 
