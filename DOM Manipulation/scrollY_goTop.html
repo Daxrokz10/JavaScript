@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+        body {
+            height: 200vh;
+
+        }
+
+        #navbar {
+            transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-hidden {
+            top: -70px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary" id="navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <button id="goTopBtn" class="btn btn-primary position-fixed end-0 bottom-0 m-4"
+        style="display:none; z-index:999;">Go to Top</button>
+    <main>
+        <section class="p-5 bg-light border-bottom">
+            <h2>Section 1</h2>
+            <p>Content for section 1...</p>
+        </section>
+        <section class="p-5 bg-white border-bottom">
+            <h2>Section 2</h2>
+            <p>Content for section 2...</p>
+        </section>
+        <section class="p-5 bg-light border-bottom">
+            <h2>Section 3</h2>
+            <p>Content for section 3...</p>
+        </section>
+        <section class="p-5 bg-white border-bottom">
+            <h2>Section 4</h2>
+            <p>Content for section 4...</p>
+        </section>
+        <section class="p-5 bg-light border-bottom">
+            <h2>Section 5</h2>
+            <p>Content for section 5...</p>
+        </section>
+        <section class="p-5 bg-white border-bottom">
+            <h2>Section 6</h2>
+            <p>Content for section 6...</p>
+        </section>
+        <section class="p-5 bg-light border-bottom">
+            <h2>Section 7</h2>
+            <p>Content for section 7...</p>
+        </section>
+        <section class="p-5 bg-white border-bottom">
+            <h2>Section 8</h2>
+            <p>Content for section 8...</p>
+        </section>
+    </main>
+    <footer>
+        <!-- place footer here -->
+    </footer>
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script>
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function () {
+            let st = window.pageYOffset;
+            if (st > lastScroll) {
+                // Scrolling down, hide navbar
+                navbar.classList.add('navbar-hidden');
+            } else {
+                // Scrolling up, show navbar
+                navbar.classList.remove('navbar-hidden');
+            }
+            lastScroll = st;
+            // Go to Top button logic
+            const btn = document.getElementById('goTopBtn');
+            if (window.scrollY > 200) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+        document.getElementById('goTopBtn').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+
+</html>
