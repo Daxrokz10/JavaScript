@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Changer</title>
+</head>
+<body>
+    <input type="text" id="font-size">
+    <p id="font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur soluta dolorum nam beatae animi illo dolore ullam aliquam deleniti debitis?</p>
+    <button id="change" onclick="resize()">Change Font Size</button>
+    <script>
+        let input = document.getElementById('font-size');
+        let text = document.getElementById('font');
+
+        let resize = function() {
+            let size = input.value;
+            if (size && !isNaN(size)) {
+                text.style.fontSize = size + "px";
+            }
+        };
+        
+    </script>
+</body>
+</html>
