@@ -6,95 +6,124 @@
     <title>Simple Slider</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
+            background: linear-gradient(135deg, #c3cfe2 0%, #e2d1c3 100%);
             padding: 30px;
+            min-height: 100vh;
         }
 
         .slider {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 30px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 32px 24px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .slide {
             display: none;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s;
         }
 
         .visible {
             display: block;
+            transform: scale(1.08);
+            box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.18);
         }
 
         .slide img {
-            width: 200px;
-            height: 150px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(31, 38, 135, 0.12);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            height: 400px;
+            width: 600px;
         }
 
         button {
-            padding: 8px 16px;
-            font-size: 16px;
-            background: #333;
-            color: white;
-            border: none;
-            border-radius: 4px;
+            padding: 10px 28px;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.18);
+            color: #222;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
             cursor: pointer;
+            margin: 0 10px;
+            box-shadow: 0 2px 8px rgba(31, 38, 135, 0.10);
+            backdrop-filter: blur(4px);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
         }
 
-        button:disabled {
-            background: #999;
+        button:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.35);
+            color: #0d6efd;
+            box-shadow: 0 4px 16px rgba(31, 38, 135, 0.18);
         }
+
     </style>
 </head>
 
 <body>
 
     <div class="slider" id="slider">
-        <div class="slide"><img src="./MainBefore.jpg"></div>
-        <div class="slide"><img src="./pexels-souvenirpixels-414612.jpg"></div>
-        <div class="slide"><img src="./photo-1575936123452-b67c3203c357.jpg"></div>
-        <div class="slide"><img src="./MainBefore.jpg"></div>
+        <div class="slide visible"><img src="./Zugpsitze_mountain.jpg"></div>
         <div class="slide"><img src="./pexels-souvenirpixels-414612.jpg"></div>
         <div class="slide"><img src="./photo-1575936123452-b67c3203c357.jpg"></div>
     </div>
 
-    <button id="prevBtn">Prev</button>
-    <button id="nextBtn">Next</button>
+    <button id="prevBtn" onclick="prevSlide()">Prev</button>
+    <button id="nextBtn" onclick="nextSlide()">Next</button>
+    <div id="time">
+        <label for="timeInput">Set Interval (seconds): </label>
+        <input type="number" id="timeInput" value="3" min="1" max="10" onchange="setIntervalTime()">
+    </div>
 
     <script>
-        const slides = document.querySelectorAll('.slide');
-        let index = 0;
+        let currentIndex = 0;
+        let slides = document.querySelectorAll('.slide');
+        let sliderInterval;
 
-        function showSlides() {
-            slides.forEach((slide, i) => {
+        function showSlide(index) {
+            slides.forEach((slide) => {
                 slide.classList.remove('visible');
-                if (i >= index && i < index + 3) {
-                    slide.classList.add('visible');
-                }
-            });
-            document.getElementById('prevBtn').disabled = index === 0;
-            document.getElementById('nextBtn').disabled = index + 3 >= slides.length;
+            })
+            slides[index].classList.add('visible');
         }
 
-        document.getElementById('nextBtn').onclick = function () {
-            if (index + 3 < slides.length) {
-                index++;
-                showSlides();
-            }
-        };
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
 
-        document.getElementById('prevBtn').onclick = function () {
-            if (index > 0) {
-                index--;
-                showSlides();
-            }
-        };
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
 
-        showSlides();
+        function setIntervalTime(){
+            const timeInput = document.getElementById('timeInput');
+            const intervalTime = parseInt(timeInput.value) * 1000 || 3000;
+            clearInterval(sliderInterval);
+            sliderInterval = setInterval(nextSlide, intervalTime);
+        }
+
+        // Start the slider automatically on page load
+        window.onload = function() {
+            showSlide(currentIndex);
+            setIntervalTime();
+        }
+
     </script>
 </body>
 
