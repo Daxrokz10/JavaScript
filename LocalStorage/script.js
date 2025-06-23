@@ -57,14 +57,15 @@ let displayData = (()=>{
 displayData();
 
 window.editUser = function(index) {
-    const userinstance = users[index];
-    // Populate form fields
-    Object.keys(userinstance).forEach(key => {
-        if (key !== 'id' && document.querySelector(`[name='${key}']`)) {
-            document.querySelector(`[name='${key}']`).value = userinstance[key];
-            user[key] = userinstance[key];
+    // Set form values directly from users[index]
+    for (const input of inputs) {
+        if (users[index][input.name] !== undefined) {
+            input.value = users[index][input.name];
+        } else {
+            input.value = '';
         }
-    });
+    }
+    user = { ...users[index] };
     editIndex = index;
 }
 
