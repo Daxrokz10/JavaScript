@@ -57,15 +57,16 @@ let displayData = (()=>{
 displayData();
 
 window.editUser = function(index) {
-    // Set form values directly from users[index]
-    for (const input of inputs) {
-        if (users[index][input.name] !== undefined) {
+    inputs.forEach((input)=>{
+        if(users[index][input.name] !== undefined){
             input.value = users[index][input.name];
         } else {
             input.value = '';
         }
-    }
+    });
+    // Set user object to the selected user's data
     user = { ...users[index] };
+    // Set editIndex so handleSubmit knows to update, not add
     editIndex = index;
 }
 
