@@ -1,28 +1,57 @@
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
+let Users = [];
+const table = document.getElementById('table');
+const headings = document.getElementById('headings');
 
-// fetch(API_URL, {
-//     method: 'GET'
-// })
-// .then((res) => res.json)
-// .then((data) => {
-//     data.forEach(user => {
-//         console.log(`Name: ${user.name}, Email: ${user.email}`);
-//     });
-// })
-// .catch((err) => {
-//     console.log(err);
-// });
+async function fetchUsers() {
+    let res = await fetch(API_URL);
+    let users = await res.json();
 
+    Users = users;
+    console.log(Users);
 
-async function getData() {
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    return data;
+    getHeadings();
+    
+    view();
 }
 
-getData()
-.then(data =>{
-    data.forEach(user => {
-        console.log(`name: ${user.name}`);
-    });
-});
+
+fetchUsers();
+
+function view() {
+    table.innerText = ''
+    Users.forEach(user=> {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+        <td>
+            ${user.id}
+        </td>
+        <td>
+            ${user.name}
+        </td>
+        <td>
+            ${user.username}
+        </td>
+        <td>
+            ${user.email}
+        </td>
+        <td>
+            ${user.address.city}
+        </td>
+        `
+        table.appendChild(tr);
+
+    })
+}
+let getHeadings = (()=>{
+    let user = Users[0];
+    let row = document.createElement('tr');
+    for(let key in user){
+        let cell = document.createElement('th');
+        cell.textContent = key
+        row.appendChild(cell);
+    }
+    headings.append(row);
+})
+
+
