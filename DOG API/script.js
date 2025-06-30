@@ -1,13 +1,5 @@
 let img = document.getElementById("dogImage");
 let loader = document.getElementById("loader");
-
-// async function fetchDog() {
-//     loader.style.display = 'block';
-//     const res = await fetch(DOG_API);
-//     const data = await res.json();
-
-// }
-
 let DOG_BREED_URL = "https://dog.ceo/api/breeds/list/all";
 let dogBreeds = [];
 let dogDropdown = document.getElementById("dogDropdown");
