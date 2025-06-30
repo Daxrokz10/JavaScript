@@ -1,5 +1,7 @@
 # DOG API Project
 
+Deploy link:- https://dog-api-project-five.vercel.app/
+
 This project is a simple web app that allows you to view random dog images and select different dog breeds to see images of that breed. It uses the [Dog CEO API](https://dog.ceo/dog-api/) and features a modern UI with Bootstrap and custom styles.
 
 ## Features
@@ -8,12 +10,6 @@ This project is a simple web app that allows you to view random dog images and s
 - Loader animation while fetching images
 - Success and error toast notifications
 - Responsive and clean design
-
-## How to Use
-1. Open `index.html` in your browser.
-2. Wait for the breed list to load in the dropdown.
-3. Select a breed from the dropdown to see a random image of that breed.
-4. A loader will appear while the image loads, and a toast will notify you of success or failure.
 
 ## Tech Stack
 - HTML5
